@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-      'js/*.js',
+      'js/**/*.js',
       'test/unit/*.js'
     ],
 
@@ -39,10 +39,10 @@ module.exports = function(config) {
     reporters: ['progress', 'junit'],
 
     junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
+      outputDir: process.env.JUNIT_REPORT_PATH,
+      outputFile: process.env.JUNIT_REPORT_NAME,
+      useBrowserName: false
     },
-
 
     // web server port
     port: 9876,
@@ -72,11 +72,6 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity,
-
-    junitReporter: {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+    concurrency: Infinity
   })
 }
